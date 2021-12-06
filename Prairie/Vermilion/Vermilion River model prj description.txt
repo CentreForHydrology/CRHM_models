@@ -1,0 +1,30 @@
+Vermilion River model prj file description:
+
+VRB_Test_modified_11Dec17_46wetlands_subbasinOBS_spinup_2005-09.prj is the updated Vermilion River hydrological model on
+December 11, 2017. The update was made to the original Vermilion River hydrological model prj file: 
+VRB_Test_modified_28Nov11_46wetlands_subbasinOBS_spinup_2005-09.prj. 
+
+The original Vermilion River hydrological model is described in the following report:
+
+Pomeroy J, Fang X, Shook K, Westbrook C, and Brown T. 2012. Informing the Vermilion River Watershed Plan through Application 
+of the Cold Regions Hydrological Model Platform, Centre for Hydrology Report #12.
+https://research-groups.usask.ca/hydrology/documents/reports/chrpt12_vermilion-river-basin-study-final-report_apr12.pdf
+
+The updated Vermilion River hydrological model includes the following changes:
+
+1. Replacing 'evap' module with 'evap_Resist' module; 'evap_Resist' gives better ET simulation as it uses Penman-Monteith for 
+unsaturated surface and has better representation of stomatal resistance based on changing vegetation height and LAI. 
+These parameters in 'evap_Resist' module are still in the default values, and further work is needed to finish setting up these parameters. 
+
+2. Replacing 'intcp' module with 'CanopyClearing#1' module. 
+
+3. Changing 'ebsm' module to 'ebsm#1' module; 'ebsm#1' is more physically based as it reads directly Qsi input instead of using empirical
+equations for radiation estimation.
+
+4. Adding 'K_Estimate' module, the Ks parameters (saturated hydraulic conductivity) for upper and lower soil layer as well as groundwater layer
+are still in the default values, and further work is needed to finish setting up these parameters. 
+The Ks parameters are used to estimate various drainage factors, such as rechr_ssr_K, lower_ssr_K, Sd_ssr_K, Soil_gw_K, Sd_gw_K.  
+Previously, these _K values are set as fixed values. Now, with 'K_Estimate' module, they are estimated and vary with soil moisture and Sd storage status.
+
+5. Adding 'Volumetric' module, parameters in this module are still in the default values, and further work is needed to finish setting up these parameters.
+This module sets up "fallstat" value based on the soil moisture status on the date you specify to set the "fallstat" (i.e. set_fallstat parameter).
